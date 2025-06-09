@@ -119,8 +119,33 @@ let carello = {
       quantità: 1,
       prezzo: 'non ancora disponibile'
     })
+  },
+
+  rimuoviprodotto: function(prodotto){
+    for (i=0; i<carello.prodotti.length;i++){
+      if (carello.prodotti[i].nome === prodotto){
+        carello.prodotti.splice(i,1)
+      }
+    }
+  },
+
+  veroCarello: function(array){
+
+    let totale = 0
+    for (i=0; i<carello.prodotti.length;i++){
+      for (j=0; j<array.length;j++){
+        if (array[j] === carello.prodotti[i].nome){
+          totale = totale+carello.prodotti[i].prezzo
+        }
+
+      }
+    }
+    
+    return totale;
   }
 }
 
 carello.aggiungiProdotto('mozzarella')
+carello.rimuoviprodotto('limone')
 console.log(carello.prodotti)
+console.log(carello.veroCarello(['maionese', 'salame', 'maionese']))
