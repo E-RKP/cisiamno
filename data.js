@@ -4,11 +4,12 @@ constructor(name, surname, saldo){
   this.nome = name
   this.cognome = surname
   this.saldo = saldo
+  this.movimenti = []
 }
 
 deposita(cifra){
   this.saldo = this.saldo+cifra
-  return this.saldo;
+  this.movimenti.push('+'+cifra)
 }
 
 preleva(cifra){
@@ -19,11 +20,18 @@ preleva(cifra){
   }
   
   this.saldo = this.saldo-cifra
-  return this.saldo;
+  this.movimenti.push('-'+cifra)
+  
 }
 
 statoConto(){
   console.log(this.saldo)
 }
+
 }
 
+let utente1 = new ContoBancario('Mario', 'Rossi', 0)
+utente1.deposita(100)
+utente1.preleva(100)
+utente1.deposita(4000)
+console.log(utente1)
